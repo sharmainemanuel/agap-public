@@ -73,8 +73,8 @@ $(document).ready(function()
 function initialize(vLat, vLong, vZoom)
 {
  var arrLocations =[
-    ['Zamboanga', 6.916228, 122.069782],
-    ['Metro Davao', 7.100497, 125.608841],
+    ['Zamboanga', 6.920318, 122.086241],
+    ['Metro Davao', 7.098048, 125.610844],
     ['Valencia City', 7.865434, 125.169273],
     ['Cagayan De Oro', 8.456392, 124.627907],
     ['Tacloban City', 11.255724, 124.950940],
@@ -88,7 +88,7 @@ function initialize(vLat, vLong, vZoom)
     ['Baguio City', 16.3995547,120.5537555],
     ['Laoag City', 18.1981728,120.5276349],
     ['Tuguegarao City', 17.6022296,121.6894235],
-    ['Metro Manila', 14.5655922,120.8845468]
+    ['Metro Manila', 14.599598, 120.984797]
   ];
   vImageURL = "img/weather-icons/partly_cloudy_skies.png";
   var myMapStyle = setMyMapStyle();
@@ -122,7 +122,7 @@ function initialize(vLat, vLong, vZoom)
 
     google.maps.event.addListener(marker, 'click', (function(marker, i){
     return function(){
-      var vLayout = "<br /><table border='1'><tr><td colspan='5'><strong>"+arrCityName[i]+"</strong><br />Wind Strenght: "+arrWindStr[i]+"<br />Wind Direction: "+arrWindDir[i]+"</td></tr>";
+      var vLayout = "<br /><table border='1'><tr><td colspan='5'><strong>"+arrCityName[i]+"</strong><br />Wind Strength: "+arrWindStr[i]+"<br />Wind Direction: "+arrWindDir[i]+"</td></tr>";
       vLayout += "<tr><td><span><strong>"+displayDay(0)+"</strong></span><img src="+arrIcon1[i]+"><br /><span>"+arrMin1[i]+" - "+arrMax1[i]+"&degC</span></td>";
       vLayout += "<td><span><strong>"+displayDay(1)+"</strong></span><img src="+arrIcon2[i]+"><br /><span>"+arrMin2[i]+" - "+arrMax2[i]+"&degC</span></td>";
       vLayout += "<td><span><strong>"+displayDay(2)+"</strong></span><img src="+arrIcon3[i]+"><br /><span>"+arrMin3[i]+" - "+arrMax3[i]+"&degC</span></td>";
