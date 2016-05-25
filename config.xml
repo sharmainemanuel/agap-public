@@ -3,8 +3,8 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "ph.gov.dost.pagasa-user.gc.css"
-        version   = "2.55">
+        id        = "ph.gov.dost.pagasa-user.gc.ccs"
+        version   = "2.56">
 
     <name>PAGASA</name>
 
@@ -13,7 +13,7 @@
     </description>
 
     <author href="http://phonegap.com" email="support@phonegap.com">
-        PhoneGap Team
+        Gordon College CCS
     </author>
 
     <!--
@@ -23,7 +23,7 @@
 		<preference name="permissions"                value="none"/>
     -->
     
-
+	
     <!-- Customize your app and platform with the preference element. -->
     <preference name="orientation"                value="default" />        <!-- all: default means both landscape and portrait are enabled -->
     <preference name="target-device"              value="universal" />      <!-- all: possible values handset, tablet, or universal -->
@@ -68,12 +68,17 @@
     <gap:plugin name="org.apache.cordova.vibration" />
 
     <!-- Third party plugins -->
+	
+
     <!-- A list of available plugins are available at https://build.phonegap.com/plugins -->
     <!--
         <gap:plugin name="com.phonegap.plugins.barcodescanner" />
     -->
 	<!-- Pushwoosh plugin -->
+	
     <gap:plugin name="pushwoosh-pgb-plugin" source="npm" />
+	<gap:plugin name="nl.x-services.plugins.socialsharing" />
+	<gap:plugin name="cordova.plugins.diagnostic.api-22" source="npm" />
 
     <!-- Define app icon for each platform. -->
 	
@@ -130,8 +135,13 @@
 <access origin="http://api.meteopilipinas.gov.ph/v1/raingauge" />
 <access origin="http://api.meteopilipinas.gov.ph/v1/fast/asian" />
 <access origin="http://api.meteopilipinas.gov.ph/v1/fast/outlook" />
+<allow-navigation href="*" />
+<allow-intent href="*" />
+<access origin="*" /> <!-- Required for iOS9 -->
+
+	<plugin name="cordova-plugin-whitelist" source="npm" spec="1.1.0" />
 <allow-navigation href="http://*/*" />
-    <plugin name="cordova-plugin-whitelist" version="1" />
+<!--    <plugin name="cordova-plugin-whitelist" version="1" />-->
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />

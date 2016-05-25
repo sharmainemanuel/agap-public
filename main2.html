@@ -453,7 +453,10 @@ function getData(){
 			setTimeout(function(){$('#imgLoader2').fadeOut();},500);}
 	}
 	   
-	}
+	},  error: function (request, textStatus, errorThrown) {
+      alert("The server is currently undermaintenance please try again later");
+	  setTimeout(function(){$('#imgLoader2').fadeOut();},500);}
+    }
 	});
 }
 </script>

@@ -8,7 +8,29 @@
   <link rel="stylesheet" href="css/themes/jquery.mobile.structure-1.4.5.min.css" />
   <script src="js/jquery.min.js"></script> 
   <script src="js/jquery.mobile-1.4.5.min.js"></script>
+
     <script>
+	
+	
+	
+	
+			$.ajax({
+	type: "GET",
+	url: "http://m.weather.gov.ph/agaptest/main_local.php",
+	async: false,
+	success: function(myData){
+	console.log(myData);
+	
+	},  error: function (request, textStatus, errorThrown) {
+      alert("The server is currently undermaintenance please try again later");
+	 // setTimeout(function(){$('#imgLoader2').fadeOut();},500);}
+      $('#imgLoader').fadeOut();
+      //location.href="main2.html";	 
+    }
+	
+	});
+	
+	
   setTimeout(function() {
     if(localStorage.getItem("dataemail") == null || localStorage.getItem("dataemail") == "")
     {
@@ -16,7 +38,7 @@
       $('#gcccsLoader').fadeOut();
       $('#imgLoader').fadeOut();
       location.href="main2.html";
-        }, 1000);   
+        }, 3000);   
     }
     else
     {
@@ -35,7 +57,8 @@
     document.addEventListener("deviceready", initPushwoosh, true);
  
     //rest of the code
-}
+
+	}
   function initPushwoosh()
 {
     var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
