@@ -21,16 +21,6 @@
 	success: function(myData){
 	console.log(myData);
 	
-	},  error: function (request, textStatus, errorThrown) {
-      alert("The server is currently undermaintenance please try again later");
-	 // setTimeout(function(){$('#imgLoader2').fadeOut();},500);}
-      $('#imgLoader').fadeOut();
-      //location.href="main2.html";	 
-    }
-	
-	});
-	
-	
   setTimeout(function() {
     if(localStorage.getItem("dataemail") == null || localStorage.getItem("dataemail") == "")
     {
@@ -50,6 +40,17 @@
         }, 1000);
     }
     }, 1000);
+	},  error: function (request, textStatus, errorThrown) {
+      alert("The server is currently undermaintenance please try again later");
+	 // setTimeout(function(){$('#imgLoader2').fadeOut();},500);}
+      $('#imgLoader').fadeOut();
+	   navigator.app.exitApp();
+      //location.href="main2.html";	 
+    }
+	
+	});
+	
+	
   </script>
   <script>
   
