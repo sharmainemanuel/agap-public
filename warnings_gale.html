@@ -19,7 +19,7 @@
 			.wIcon{margin-left: -24px;}</style>
 
 	</head>
-	<body >
+	<body>
 
 <div data-role="page" id="warnings_gale">
 		<div data-role="panel" id="leftpanel" data-display="overlay" data-position-fixed="true" >
@@ -117,9 +117,9 @@
                 	<h1 class='nd-title'><i class='zmdi zmdi-share'></i>&nbsp;SHARE</h1>
             	</div>
                 <div data-role="content">
-                    <a href="http://www.facebook.com/sharer/sharer.php?u=http://www.pagasa.dost.gov.ph/index.php/general-weather/daily-weather-forecast&title=Weather"  data-role="button" data-inline="true" class="ui-btn " target="_blank"><i class='zmdi zmdi-facebook-box zmdi-hc-lg'></i> SHARE</a>
-					<a href="http://twitter.com/share?url=http://www.pagasa.dost.gov.ph/index.php/general-weather/daily-weather-forecast&title=Weather&text=Daily+Weather+%23PAGASA" title="Share on Twitter"  data-role="button" data-inline="true" class="ui-btn  " target="_blank"><i class='zmdi zmdi-twitter-box zmdi-hc-lg'></i> TWEET</a>
-					<a href="https://plus.google.com/share?url=http://www.pagasa.dost.gov.ph/index.php/general-weather/daily-weather-forecast&title=Weather&text=Daily+Weather+%23PAGASA" title="Share on Twitter"  data-role="button" data-inline="true" class="ui-btn  " target="_blank"><i class='zmdi zmdi-google-plus-box zmdi-hc-lg'></i> SHARE</a>
+                    <a href="http://www.facebook.com/sharer/sharer.php?u=http://pagasa.dost.gov.ph/index.php/marine/gale-warning"  data-role="button" data-inline="true" class="ui-btn " target="_blank"><i class='zmdi zmdi-facebook-box zmdi-hc-lg'></i> SHARE</a>
+					<a href="http://twitter.com/share?url=http://pagasa.dost.gov.ph/index.php/marine/gale-warningA" title="Share on Twitter"  data-role="button" data-inline="true" class="ui-btn  " target="_blank"><i class='zmdi zmdi-twitter-box zmdi-hc-lg'></i> TWEET</a>
+					<a href="https://plus.google.com/share?url=http://pagasa.dost.gov.ph/index.php/marine/gale-warning" title="Share on Twitter"  data-role="button" data-inline="true" class="ui-btn  " target="_blank"><i class='zmdi zmdi-google-plus-box zmdi-hc-lg'></i> SHARE</a>
                     <a href="dialog/index.html" data-rel="back" data-role="button" data-inline="true" class="ui-btn ui-btn-primary"><i class='zmdi zmdi-cancel'></i> Cancel</a>
 
                 </div>
@@ -127,15 +127,35 @@
 		 
 		 
 			<div role="main" class="ui-content" data-inset="false">
+
 				<img id="imgLoader" src="img/ballRing.gif" class="loading">
-				<div role="main" class="ui-content" data-inset="false">
-					<div class="inner">
+				<div class="nd2-card">
+					<div class="card-media">
+					
+					
+						<select name="seaboardlist" id="seaboardlist" onchange="viewnow()">
+							<option value=0 selected hidden>[Select a Seaboard]</option>
+						</select>
+						<div id="gale-header"></div>	
+						<div>
+							<p id="seaboard"></p>
+							<p id="vdate"></p>
+							<p id="vtime"></p>
+							<p id="seaboardarea"></p>
+							<p id="weather"></p>
+							<p id="windforce"></p>
+							<p id="seacondition"></p>
+							<p id="waveheight"></p>
+
+						</div>
 					</div>
-				</div> 
+				</div>
+
 			</div> 
 		</div> 
 			<pre id="log"></pre>
 			<pre class="classList"></pre>
+
 		
 		<script src="cordova.js"></script>
 		<script src="js/jquery.min.js"></script>

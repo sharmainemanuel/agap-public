@@ -1,0 +1,560 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Project AGAP</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="css/material-design-iconic-font.min.css" />
+		<meta http-equiv="Content-Security-Policy" 
+content="default-src *; 
+style-src * 'self' 'unsafe-inline' 'unsafe-eval'; 
+script-src * 'self' 'unsafe-inline' 'unsafe-eval';">
+		<link rel="stylesheet" href="css/jquery.mobile.min.css" />
+		<link rel="stylesheet" href="vendor/waves/waves.min.css" />
+		<link rel="stylesheet" href="vendor/wow/animate.css" />
+		<link rel="stylesheet" href="css/nativedroid2.css" />
+		<link rel="stylesheet" href="css/pagasa.css" />
+		<style>/* Prevent FOUC */body { opacity: 0; }</style>
+		<style type="text/css">
+			#showDaily {margin-left:12%;}
+			.forecast {margin-left:12%;padding-top:5%;}
+			.wIcon{margin-left: -24px;}
+			span{margin-left:20px;}</style>
+ <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry,places&ext=.js"></script>
+    
+
+
+
+  
+    
+
+
+
+
+<script type='text/javascript'>
+
+	getLocation();  
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+		//	console.log("get location");
+    } else { 
+        x.innerHTML = "please check your GPS.";
+		console.log("error in getting location");
+    }
+}
+function showPosition(position) {
+	var lat =position.coords.latitude ;
+	var lon =position.coords.longitude ;
+
+	localStorage.setItem("lat", lat);
+	localStorage.setItem("lon", lon);
+	
+	
+		
+	var geocoder;
+geocoder = new google.maps.Geocoder();
+var latlng = new google.maps.LatLng(lat, lon);
+	geocoder.geocode(
+    {'latLng': latlng}, 
+    function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+                if (results[0]) {
+                    var add= results[0].formatted_address ;
+                    var  value=add.split(",");
+
+                    count=value.length;
+                    country=value[count-1];
+                    state=value[count-2];
+                    city=value[count-3];
+					localStorage.setItem("city", city);
+					            setTimeout(function(){
+    $('#imgLoader').fadeOut();
+				$("#showHome").html("<div class='card-title'><h3 class='card-primary-title'>Current Location<br>"+city+"</h3></div>");
+	}, 500);
+
+                }
+                else  {
+                    alert("address not found");
+                }
+        }
+         else {
+            alert("Geocoder failed due to: " + status);
+        }
+    }
+);
+	
+	
+}
+
+
+var locations = [
+    ["Zamboanga", "no", "Zamboanga", "", "6.916228, 122.069782", "http://maps.google.com/mapfiles/ms/icons/blue.png"],
+    ["Metro Davao", "yes", "Metro Davao", "", "7.100497, 125.608841", "http://maps.google.com/mapfiles/ms/icons/green.png"],
+    ["Valencia City", "no", "Valencia City", "", "7.865434, 125.169273", "http://maps.google.com/mapfiles/ms/icons/red.png"],
+    ["Cagayan De Oro", "yes", "Cagayan De Oro", "", "8.456392, 124.627907", "http://maps.google.com/mapfiles/ms/icons/green.png"],
+    ["Tacloban City", "yes", "Tacloban City", "<Polygon><outerBoundaryIs><LinearRing><coordinates>-122.374306,37.548933,0 -122.348557,37.538044,0 -122.359886,37.56363,0 -122.364006,37.582405,0 -122.33654,37.589207,0 -122.359543,37.59764,0 -122.372246,37.604712,0 -122.417564,37.594648,0 -122.374306,37.548933,0 </coordinates></LinearRing></outerBoundaryIs></Polygon>", "11.255724, 124.950940", "http://maps.google.com/mapfiles/ms/icons/blue.png"],
+    ["Metro Cebu", "yes", "Metro Cebu", "<Polygon><outerBoundaryIs><LinearRing><coordinates>-122.462883,37.628916,0 -122.445374,37.639247,0 -122.426147,37.648762,0 -122.405205,37.642238,0 -122.400055,37.628644,0 -122.392159,37.610696,0 -122.372246,37.604712,0 -122.417564,37.594648,0 -122.462196,37.628644,0  </coordinates></LinearRing></outerBoundaryIs></Polygon>", "10.308863, 123.915028", "http://maps.google.com/mapfiles/ms/icons/green.png"],
+    ["Iloilo City", "yes", "Iloilo City", "<Polygon><outerBoundaryIs><LinearRing><coordinates>-122.43576,37.790795,0 -122.449493,37.801646,0 -122.425461,37.809784,0 -122.402115,37.811411,0 -122.390442,37.794593,0 -122.408295,37.79188,0 -122.434387,37.789167,0 </coordinates></LinearRing></outerBoundaryIs></Polygon>", "10.720089, 122.560381", "http://maps.google.com/mapfiles/ms/icons/green.png"],
+    ["Puerto Princesa", "yes", "Puerto Princesa", "<Polygon><outerBoundaryIs><LinearRing><coordinates>-122.463398,37.760266,0 -122.477349,37.774785,0 -122.427349,37.774785,0 -122.429237,37.763658,0 -122.46357,37.760808,0</coordinates></LinearRing></outerBoundaryIs></Polygon>", "9.9474401,118.5145237", "http://maps.google.com/mapfiles/ms/icons/green.png"],
+    ["Legazpi City", "yes", "Legazpi City", "<Polygon><outerBoundaryIs><LinearRing><coordinates>-122.418766,37.747779,0 -122.425289,37.768951,0 -122.406063,37.769901,0 -122.406063,37.749679,0 -122.418251,37.747508,0 </coordinates></LinearRing></outerBoundaryIs></Polygon>", "13.1212078,123.6330866", "http://maps.google.com/mapfiles/ms/icons/green.png"],
+    ["Lipa City", "yes", "Lipa City", "<Polygon><outerBoundaryIs><LinearRing><coordinates>-122.121277,37.386799,0 -122.108917,37.362244,0 -122.077675,37.3385,0 -122.064285,37.378615,0 -122.069778,37.3898,0 -122.076645,37.402619,0 -122.078705,37.411619,0 -122.113037,37.414618,0 -122.121277,37.386799,0  </coordinates></LinearRing></outerBoundaryIs></Polygon>", "13.944612,121.0981374", "http://maps.google.com/mapfiles/ms/icons/green.png"],
+    ["Tagaytay City", "no", "Tagaytay City", "<Polygon><outerBoundaryIs><LinearRing><coordinates>-122.047119,37.33113,0 -122.065315,37.332495,0 -122.077675,37.3385,0 -122.064285,37.378615,0 -122.036819,37.385162,0 -122.006607,37.382162,0 -122.00386,37.342048,0 -122.047119,37.331403,0  </coordinates></LinearRing></outerBoundaryIs></Polygon>", "14.11722,120.8988919", "http://maps.google.com/mapfiles/ms/icons/blue.png"],
+    ["Olongapo City", "no", "Olongapo City", "<Polygon><outerBoundaryIs><LinearRing><coordinates>-121.935196,37.345051,0 -121.931076,37.294267,0 -121.871338,37.293721,0 -121.806793,37.293174,0 -121.798553,37.361426,0 -121.879578,37.36088,0 -121.934509,37.345597,0 -121.935196,37.345051,0 </coordinates></LinearRing></outerBoundaryIs></Polygon>", "14.882156,120.2759178", "http://maps.google.com/mapfiles/ms/icons/blue.png"],
+    ["Baguio City", "yes", "Baguio City", "<Polygon><outerBoundaryIs><LinearRing><coordinates>-121.935883,37.253287,0 -121.931076,37.294267,0 -121.871338,37.293721,0 -121.806793,37.293174,0 -121.790657,37.234702,0 -121.852455,37.223221,0 -121.935539,37.253014,0 </coordinates></LinearRing></outerBoundaryIs></Polygon>", "16.3995547,120.5537555", "http://maps.google.com/mapfiles/ms/icons/blue.png"],
+    ["Laoag City", "yes", "Laoag City", "<Polygon><outerBoundaryIs><LinearRing><coordinates>-121.947556,37.435612,0 -121.934509,37.476493,0 -121.893311,37.469409,0 -121.852798,37.429615,0 -121.843872,37.400165,0 -121.887817,37.3898,0 -121.959915,37.420345,0 -121.959915,37.427979,0 -121.948929,37.435612,0 -121.947556,37.435612,0</coordinates></LinearRing></outerBoundaryIs></Polygon>", "18.1981728,120.5276349", "http://maps.google.com/mapfiles/ms/icons/blue.png"],
+	["Tuguegarao City", "yes", "Tuguegarao City", "<Polygon><outerBoundaryIs><LinearRing><coordinates>-121.947556,37.435612,0 -121.934509,37.476493,0 -121.893311,37.469409,0 -121.852798,37.429615,0 -121.843872,37.400165,0 -121.887817,37.3898,0 -121.959915,37.420345,0 -121.959915,37.427979,0 -121.948929,37.435612,0 -121.947556,37.435612,0</coordinates></LinearRing></outerBoundaryIs></Polygon>", "17.6022296,121.6894235", "http://maps.google.com/mapfiles/ms/icons/blue.png"],
+    ["Metro Manila", "yes", "Metro Manila", "<Polygon><outerBoundaryIs><LinearRing><coordinates>-122.02343,37.52198,0 -122.023773,37.558731,0 -121.989784,37.573426,0 -121.959572,37.566351,0 -121.944466,37.544305,0 -121.967125,37.520891,0 -122.023087,37.522525,0</coordinates></LinearRing></outerBoundaryIs></Polygon>", "14.5655922,120.8845468", "http://maps.google.com/mapfiles/ms/icons/blue.png"]
+];
+
+
+var geocoder = null;
+var map = null;
+var customerMarker = null;
+var markers = [];
+var closest = [];
+var newloc = null;
+var icon;
+var arrCityName=[]; arrWindStr=[], arrWindDir=[];
+var arrIcon1=[], arrMin1=[], arrMax1=[];
+function initialize() {
+var lats =localStorage.getItem("lat");;
+var lons =localStorage.getItem("lon");;
+    geocoder = new google.maps.Geocoder();
+    map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 7,
+        center: new google.maps.LatLng(lats, lons),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+    var infowindow = new google.maps.InfoWindow();
+    var marker, i;
+    var bounds = new google.maps.LatLngBounds();
+    document.getElementById('info').innerHTML = "found " + locations.length + " locations<br>";
+    for (i = 0; i < locations.length; i++) {
+        var coordStr = locations[i][4];
+        var coords = coordStr.split(",");
+        var pt = new google.maps.LatLng(parseFloat(coords[0]), parseFloat(coords[1]));
+		
+        bounds.extend(pt);
+        marker = new google.maps.Marker({
+            position: pt,
+            map: map,
+            icon: locations[i][5],
+            address: locations[i][2],
+            title: locations[i][0],
+            html: locations[i][0] + "<br>" + locations[i][2]
+        });
+
+        markers.push(marker);
+
+
+        google.maps.event.addListener(marker, 'click', (function (marker, i) {
+		  return function () {
+                infowindow.setContent(marker.html);
+                infowindow.open(map, marker);
+            }
+        })
+		
+        (marker, i));
+    }
+    map.fitBounds(bounds);	
+}
+
+function codeAddress() {
+
+  var address = localStorage.getItem("city");
+ //var address = "Subic";
+    geocoder.geocode({
+        'address': address
+    }, function (results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            map.setCenter(results[0].geometry.location);
+            if (customerMarker) customerMarker.setMap(null);
+            customerMarker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+            });
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(null);
+            }
+            var numResults = parseInt(document.getElementById('numberResults').value);
+            closest = findClosestN(results[0].geometry.location, numResults);
+            for (var i = 0; i < closest.length; i++) {
+                closest[i].setMap(map);
+				newloc = closest[i].address;
+				localStorage.setItem("newloc",newloc);
+			//	alert(newloc);
+				
+
+            }
+        } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+        }
+    });
+	
+	getData();
+}
+
+function findClosestN(pt, numberOfResults) {
+
+    var closest = [];
+    for (var i = 0; i < markers.length; i++) {
+	
+
+        markers[i].distance = google.maps.geometry.spherical.computeDistanceBetween(pt, markers[i].getPosition());
+
+        markers[i].setMap(null);
+        closest.push(markers[i]);
+		
+    }
+    closest.sort(sortByDist);
+
+ return closest.splice(0,numberOfResults);
+
+	
+}
+
+function sortByDist(a, b) {
+    return (a.distance - b.distance)
+}
+	var newlocation = localStorage.getItem("newloc");
+	var city = localStorage.getItem("city");
+	/*if (newlocation == "Olongapo City"){
+								newlocation = "Sbma(Olongapo) / Clark Zone (Angeles City)";
+								}
+								else if(newlocation == "Puerto Princesa"){
+									newlocation = "Puerto Princesa City";
+								}
+	
+								else{
+								newlocation = localStorage.getItem("newloc");
+								}*/
+								
+function getData(){
+  $.ajax({
+					type: "GET",
+					url: "http://iligtas.ph/agaptest/outlook.php",
+					async: false,
+					success: function(myData){
+				
+						   for(var i = 0; i < 16; i++){
+										arrCityName.push(myData.result.data[i].cityName);
+										arrMin1.push(myData.result.data[i].day1.min);
+										arrMax1.push(myData.result.data[i].day1.max);
+										arrIcon1.push(myData.result.data[i].day1.logo);
+
+								if(newlocation == arrCityName[i]){
+										//$("#showDailyHome").html("Weather of City nearest your location : "+arrCityName[i]+"<br>Min:"+myData.result.data[i].day1.min +"Max:"+myData.result.data[i].day1.max+"<img src ='img/weather_icons/" + arrIcon1[i] + ".png'>");
+						
+					$("#showDailyHome").html("<br><span><br><br>Weather of city nearest your location</span><div class='card-media'><img width='100%' src='img/weather_icons/"+ arrIcon1[i]  + ".png'></div><div class='card-title'><h3 class='card-primary-title'>"+ arrCityName[i] +" <br>"+arrMin1[i] + "&#176;C | "+arrMax1[i] + "&#176;C </h3<hr></div>");
+							            setTimeout(function(){
+    $('#imgLoader2').fadeOut();
+							},500);			
+										
+								 }
+						 
+
+						   }
+					   
+					}
+					});
+}
+	
+
+google.maps.event.addDomListener(window, 'load', initialize);
+//]]> 
+
+</script>
+
+  
+</head>
+
+<body onLoad="codeAddress();">
+
+<div style="display:none">
+  <div id="map" style="height: 600px; width:800px;"></div>
+<input id="numberResults" type="text" value="1" />
+<input type="button" value="Search" onclick="codeAddress();"></input>
+<div id="info"></div>
+</div>
+  		<div data-role="page" class="nd2-no-menu-swipe" id="homepage">
+			<div data-role="panel" id="leftpanel" data-display="overlay" data-position-fixed="true" >
+				<div class='nd2-sidepanel-profile wow fadeInDown'>
+					<img class='profile-background' src="bg.jpg" />
+					<div class="row">
+						<div class='col-xs-4 center-xs'>
+							<div class='box'>
+								<img class="profile-thumbnail" src="icon.png" />
+							</div>
+						</div>
+						<div class='col-xs-8'>
+							<div class='box profile-text'>
+								<strong>PAGASA</strong>
+									<span class='subline'>"Tracking the sky</span>
+									<span class='subline'>Helping the country"</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<ul data-role="listview" data-inset="false"></ul>
+				<div data-role="collapsibleset">
+				<div data-role="collapsible" data-inset="false"  data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
+					<h3>General Weather</h3>
+					<ul data-role="listview" data-inset="false" data-icon="false">
+						<li><a href="main2.html#homepage" data-ajax='false' data-icon="false">Daily</a></li>
+						<li><a href="keycities.html#keycities" data-ajax='false' data-icon="false">Key Cities</a></li>
+						<li><a href="tourist.html#tourist" data-ajax='false' data-icon="false">Tourist</a></li>
+						<li><a href="local.html#local"  data-ajax='false'>Local Cities</a></li>
+						<li><a href="asian.html#asian" data-ajax='false'>Asian Cities</a></li>
+						<li><a href="shipping.html#asian" data-ajax='false'>Shipping</a></li>
+						<li><a href="weekly.html#weekly"  data-ajax='false'>Weekly Outlook</a></li>	
+					</ul>
+				</div>
+				<ul data-role="listview" data-inset="false"></ul>
+				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
+					<h3>Flood Information</h3>
+					<ul data-role="listview" data-icon="false">
+						<li><a href="flood_advisories.html" data-ajax='false'>Advisories</a></li>
+						<li><a href="flood_bulletin.html"  data-ajax='false'>Bulletin</a></li>
+						<li><a href="flood_status.html"  data-ajax='false'>Dam Status</a></li>
+					</ul>
+				</div>
+				<ul data-role="listview" data-inset="false"></ul>
+				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
+					<h3>Warnings and Advisories</h3>
+					<ul data-role="listview" data-icon="false">
+						<li><a href="warnings_thunderstorms.html" data-ajax='false'>Thunderstorms Warning</a></li>
+						<li><a href="warnings_rainfall.html" data-ajax='false'>Rainfall Warning </a></li>
+						<li><a href="warnings_gale.html" data-ajax='false'>Gale Warning</a></li>
+						<li><a href="warnings_special.html" data-ajax='false'>Special Weather Forecast</a></li>
+						<li><a href="warnings_advisories.html" data-ajax='false'>Weather Advisories</a></li>
+					</ul>
+				</div>
+				<ul data-role="listview" data-inset="false"></ul>
+				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
+							<h3>Tropical Cyclone Warnings</h3>
+							<ul data-role="listview" data-icon="false">
+								<li><a href="weatherbulletin.html" data-ajax='false'>Local Weather Bulletin</a></li>
+								<li><a href="track.html" data-ajax='false'>Tropical Cyclone Track</a></li>
+								<li><a href="hourlyupdate.html"  data-ajax='false'> Hourly Update</a></li>
+							<li><a href="warnings_shipping.html"  data-ajax='false'>Int'l Weather Bulletin</a></li>
+								</ul>
+				</div>
+				<ul data-role="listview" data-inset="false"></ul>
+				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
+					<h3>Radar and Satellite</h3>
+					<ul data-role="listview" data-icon="false">
+						<li><a href="weathermap.html#weathermap" data-ajax='false'>Weather Map</a></li>
+						<li><a href="satellite.html#satellite" data-ajax='false'>Satellite</a></li>
+						<li><a href="radar.html#radar"  data-ajax='false'>Radar</a></li>
+					</ul>
+				</div>
+				<ul data-role="listview" data-inset="false"></ul>
+				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
+					<h3>Social</h3>
+					<ul data-role="listview" data-icon="false">
+						<li><a href="facebook.html" data-ajax='false'>Facebook</a></li>	
+						<li><a href="twitter.html#twitter" data-ajax='false'>Twitter</a></li>				
+						<li><a href="podcast4.html#podcast" data-ajax='false'>Podcast</a></li>						
+					</ul>
+				</div>
+				
+	
+			</div>
+			</div>
+				<div data-role="header" data-position="fixed" class="wow fadeIn">
+					<a href="#leftpanel" class="ui-btn ui-btn-left wow fadeIn" data-wow-delay='0.8s'><i class="zmdi zmdi-menu"></i></a>
+					<h1 class="wow fadeIn" data-wow-delay='0.4s'>PAGASA</h1>
+
+				<a   href="#sharePopupDialog" class="ui-btn ui-btn-right wow fadeIn" data-wow-delay='0.8s' data-rel="popup" data-position-to="window" data-transition="pop">
+								<i class='zmdi zmdi-share'></i>
+				</a>
+					<ul data-role="nd2tabs" data-swipe="true">
+						<li data-tab="friends" data-tab-active="true">Daily Forecast</li>
+						<li data-tab="work" >RSS</li>
+						
+					</ul>
+			</div>
+
+			<div role="main" class="ui-content wow fadeIn" data-inset="false" data-wow-delay="0.2s">
+			<div data-role="nd2tab" data-tab="friends" data-swipe="true">	
+				<div class="nd2-card nd2-card card-media-right card-media-small clr-bg-cyan" >
+					
+				<iframe id="blockrandom" name="Philippine Standard Time" src="https://oras.pagasa.dost.gov.ph/dateandtime.shtml" style="width:100%" height="95" scrolling="no" frameborder="0" class="wrapper">No Iframes</iframe>
+				</div>
+			<div id="demo"> </div>	
+		<img id="imgLoader" src="img/ballRing.gif" style="width:10%;opacity:0.5;margin-left:auto;margin-right:auto;display:block; position: relative;">
+		<img id="imgLoader2" src="img/ballRing.gif" style="width:10%;opacity:0.5;margin-left:auto;margin-right:auto;display:block; position: relative;">
+		
+
+					<div class="nd2-card nd2-card card-media-right card-media-small clr-bg-cyan">	
+			
+			
+					<div data-wow-delay='0.4s' id="showHome"></div>	
+				
+				</div>	
+					<div class="nd2-card nd2-card card-media-right card-media-small clr-bg-cyan">	
+			
+			
+					<div data-wow-delay='0.4s' id="showDailyHome" class="row"></div>	
+				
+				</div>	
+				<div class="nd2-card nd2-card card-media-right card-media-small clr-bg-cyan">	
+			
+			
+				
+				</div>
+	
+			<pre id="log"></pre>
+			<pre class="classList"></pre>
+			
+			</div>
+			
+			<div data-role="nd2tab" data-tab="work" data-swipe="true">
+					<div class="nd2-card card-media-right card-media-small">
+				<div >
+				
+					<div class="card-title has-avatar has-supporting-text">
+					
+						<img class="card-avatar" src="img/alert-circle.png">
+					
+						<h3 class="card-primary-title">Daily Forecast</h3>
+					
+						<h5 class="card-supporting-text"><div id="rss-feeds" style='text-align: justify;'></div></h5>
+					</div>
+				
+				</div>
+			</div>
+			
+			</div>
+			
+			<div data-role="popup" id="sharePopupDialog">
+
+                <div data-role="header">
+                	<h1 class='nd-title'><i class='zmdi zmdi-share'></i>&nbsp;SHARE</h1>
+            	</div>
+
+                <div data-role="content">
+                    
+                    <a href="http://www.facebook.com/sharer/sharer.php?u=http://www.pagasa.dost.gov.ph/index.php/general-weather/daily-weather-forecast&title=Weather"  data-role="button" data-inline="true" class="ui-btn " target="_blank"><i class='zmdi zmdi-facebook-box zmdi-hc-lg'></i> SHARE</a>
+					<a href="http://twitter.com/share?url=http://www.pagasa.dost.gov.ph/index.php/general-weather/daily-weather-forecast&title=Weather&text=Daily+Weather+%23PAGASA" title="Share on Twitter"  data-role="button" data-inline="true" class="ui-btn  " target="_blank"><i class='zmdi zmdi-twitter-box zmdi-hc-lg'></i> TWEET</a>
+					<a href="https://plus.google.com/share?url=http://www.pagasa.dost.gov.ph/index.php/general-weather/daily-weather-forecast&title=Weather&text=Daily+Weather+%23PAGASA" title="Share on Twitter"  data-role="button" data-inline="true" class="ui-btn  " target="_blank"><i class='zmdi zmdi-google-plus-box zmdi-hc-lg'></i> SHARE</a>
+                    <a href="dialog/index.html" data-rel="back" data-role="button" data-inline="true" class="ui-btn ui-btn-primary"><i class='zmdi zmdi-cancel'></i> Cancel</a>
+
+                </div>
+            </div>
+			
+			
+
+		
+		<!--  -->
+			
+		</div>
+		</div>
+	
+		
+<script src="cordova.js"></script>
+		
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery-ui.min.js"></script>
+		<script src="js/jquery.mobile.min.js"></script>
+		<script src="vendor/waves/waves.min.js"></script>
+		<script src="vendor/wow/wow.min.js"></script>
+		<script src="js/nativedroid2.js"></script>
+		<script src="nd2settings.js"></script>
+		<script src="js/tweecool.min.js"></script>
+		<script src="js/jquery.rss.js"></script>
+		<script src="js/moment.min.js"></script>
+		<script src="js/date.js"></script>
+
+
+        <script type="text/javascript" src="js/PushwooshAndroid.js"></script>
+        <script type="text/javascript" src="js/PushwooshiOS.js"></script>
+			<script type="text/javascript" src="js/PushwooshWP.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+	
+	<script>
+$(document).ready(function() {
+
+function Logger(id) {	
+  this.el = document.getElementById('log');
+}
+Logger.prototype.log = function(msg) {
+  var fragment = document.createDocumentFragment();
+  fragment.appendChild(document.createTextNode(msg));
+  fragment.appendChild(document.createElement('br'));
+  this.el.appendChild(fragment);
+};
+
+Logger.prototype.clear = function() {
+  this.el.textContent = '';
+};
+
+var logger = new Logger('log');
+
+function updateConnectionStatus(msg, connected) {
+  var el = document.querySelector('#connection');
+  if (connected) {
+    if (el.classList) {
+      el.classList.add('connected');
+      el.classList.remove('disconnected');
+    } else {
+      el.addClass('connected');
+      el.removeClass('disconnected');
+    }
+  } else {
+    if (el.classList) {
+      el.classList.remove('connected');
+      el.classList.add('disconnected');
+    } else {
+      el.removeClass('connected');
+      el.addClass('disconnected');
+    }
+  }
+  el.innerHTML = msg + '<div></div>';
+}
+
+window.addEventListener('load', function(e) {
+  if (navigator.onLine) {
+    updateConnectionStatus('', true);
+  } else {
+// var  msg =  updateConnectionStatus('No Internet Connection', false);
+  new $.nd2Toast({ 
+   message : "No Internet Connection", // Required
+   action : { // Optional (Defines the action button on the right)
+     title : "Try Again", // Title of the action button
+     fn : function() { // function that will be triggered when action clicked
+        //console.log("Action Button clicked'");
+		location.href="main2.html";
+     },
+     color : "red" // optional color of the button (default: 'lime')
+   },
+   ttl : 8000 // optional, time-to-live in ms (default: 3000)
+ });
+  }
+}, false);
+
+
+
+
+	$("#rss-feeds-date").rss("https://kidlat.pagasa.dost.gov.ph/prsdcodes/rss/forecast/forecast.xml", {
+	dateFormat: 'MMM Do YY, h:mm a',
+	    entryTemplate: '{date}',
+		effect: 'slideFastSynced',
+	        }).show();
+
+	$("#rss-feeds").rss("https://kidlat.pagasa.dost.gov.ph/prsdcodes/rss/forecast/forecast.xml", {
+	    entryTemplate: '{bodyPlain}',
+		effect: 'slideFastSynced',
+	        }).show();
+});
+	</script>
+
+</body>
+
+</html>
+

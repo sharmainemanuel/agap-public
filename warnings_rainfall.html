@@ -128,9 +128,9 @@ li span {font-weight: :bold;
                 	<h1 class='nd-title'><i class='zmdi zmdi-share'></i>&nbsp;SHARE</h1>
             	</div>
                 <div data-role="content">
-                    <a href="http://www.facebook.com/sharer/sharer.php?u=http://www.pagasa.dost.gov.ph/index.php/general-weather/daily-weather-forecast&title=Weather"  data-role="button" data-inline="true" class="ui-btn " target="_blank"><i class='zmdi zmdi-facebook-box zmdi-hc-lg'></i> SHARE</a>
-					<a href="http://twitter.com/share?url=http://www.pagasa.dost.gov.ph/index.php/general-weather/daily-weather-forecast&title=Weather&text=Daily+Weather+%23PAGASA" title="Share on Twitter"  data-role="button" data-inline="true" class="ui-btn  " target="_blank"><i class='zmdi zmdi-twitter-box zmdi-hc-lg'></i> TWEET</a>
-					<a href="https://plus.google.com/share?url=http://www.pagasa.dost.gov.ph/index.php/general-weather/daily-weather-forecast&title=Weather&text=Daily+Weather+%23PAGASA" title="Share on Twitter"  data-role="button" data-inline="true" class="ui-btn  " target="_blank"><i class='zmdi zmdi-google-plus-box zmdi-hc-lg'></i> SHARE</a>
+                    <a href="http://www.facebook.com/sharer/sharer.php?u=http://pagasa.dost.gov.ph/#rainfall-and-thunderstorm-warning"  data-role="button" data-inline="true" class="ui-btn " target="_blank"><i class='zmdi zmdi-facebook-box zmdi-hc-lg'></i> SHARE</a>
+					<a href="http://twitter.com/share?url=http://pagasa.dost.gov.ph/#rainfall-and-thunderstorm-warning" title="Share on Twitter"  data-role="button" data-inline="true" class="ui-btn  " target="_blank"><i class='zmdi zmdi-twitter-box zmdi-hc-lg'></i> TWEET</a>
+					<a href="https://plus.google.com/share?url=http://pagasa.dost.gov.ph/#rainfall-and-thunderstorm-warning" title="Share on Twitter"  data-role="button" data-inline="true" class="ui-btn  " target="_blank"><i class='zmdi zmdi-google-plus-box zmdi-hc-lg'></i> SHARE</a>
                     <a href="dialog/index.html" data-rel="back" data-role="button" data-inline="true" class="ui-btn ui-btn-primary"><i class='zmdi zmdi-cancel'></i> Cancel</a>
 
                 </div>
@@ -139,42 +139,46 @@ li span {font-weight: :bold;
 		 
 
 			<div role="main" class="ui-content" data-inset="false">
-				<div role="main" class="ui-content" data-inset="false">	
-				<!-- <img id="imgLoader" src="img/ballRing.gif" class="loading"> -->
-				<select id="voptions" onchange="getData(document.getElementById('voptions').value)">
-				<option value="" hidden >select region</option> 
-				<option value="" style="display:none;" >select region</option> 
-					<option value="0" >Northern Luzon</option> 			
-					<option value="1" >NCR</option> 	
-					<option value="2" >Southern Luzon</option> 
-					<option value="3" >Visayas</option> 
-					<option value="4" >Mindanao</option> 
+				<div class="nd2-card nd3-card">
+					<div class="card-media">
+					<!-- <img id="imgLoader" src="img/ballRing.gif" class="loading"> -->
+						<select id="voptions" onchange="getData(document.getElementById('voptions').value)">
+						<option value="" hidden >select region</option> 
+						<option value="" style="display:none;" >select region</option> 
+							<option value="3" >Northern Luzon</option> 			
+							<option value="0" >NCR</option> 	
+							<option value="2" >Southern Luzon</option> 
+							<option value="4" >Visayas</option> 
+							<option value="1" >Mindanao</option> 
 
-				</select>
-			
-			<br><br>
-			<div class="inner" id="inner" >
-		
-			<ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b">
-            <li>
-                <img src="img/newyellow.png">
-                <h2>ADVISORY</h2>
-				<p>Community PREPAREDNESS FLOODING is THREATHENING in low-lying areas and near river channels </p>
-            </li>
-            <li>
-                <img src="img/neworange.png">
-                <h2>ALERT</h2>
-				<p>Community PREPAREDNESS FLOODING is THREATHENING in low-lying areas and near river channels </p>
-			
-               
-            </li>
-			<li>
-                <img src="img/newred.png">
-                 <h2>EMERGENCY</h2>
-               	 <p>Community RESPONSE SEVERE FLOODING is EXPECTED Take necessary precautionary measures</p>
-            </li>
-        </ul>
-			</div>
+						</select>
+					
+						<br><br>
+						<div class="inner" id="inner" >
+				
+					<ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b">
+					<li>
+						<img src="img/newyellow.png">
+						<h2>ADVISORY</h2>
+						<p>Community PREPAREDNESS FLOODING is THREATHENING in low-lying areas and near river channels </p>
+					</li>
+					<li>
+						<img src="img/neworange.png">
+						<h2>ALERT</h2>
+						<p>Community PREPAREDNESS FLOODING is THREATHENING in low-lying areas and near river channels </p>
+					
+					   
+					</li>
+					<li>
+						<img src="img/newred.png">
+						 <h2>EMERGENCY</h2>
+						 <p>Community RESPONSE SEVERE FLOODING is EXPECTED Take necessary precautionary measures</p>
+					</li>
+				</ul>
+					</div>
+						
+						
+					</div> 
 				</div> 
 			</div> 
 		</div> 

@@ -17,7 +17,8 @@
 			.forecast {margin-left:12%;padding-top:5%;}
 			.wIcon{margin-left: -24px;}
 			.inner span{font-weight:bold;}
-			.inner2 span{font-weight:bold;}</style>
+			.inner2 span{font-weight:bold;}
+			</style>
 	</head>
 	<body >
 		<div data-role="page" class="nd2-no-menu-swipe" id="homepage">
@@ -109,12 +110,7 @@
 		 	<a   href="#sharePopupDialog" class="ui-btn ui-btn-right wow fadeIn" data-wow-delay='0.8s' data-rel="popup" data-position-to="window" data-transition="pop">
 								<i class='zmdi zmdi-share'></i>
 				</a>
-					<ul data-role="nd2tabs" data-swipe="true">
-						<li data-tab="friends" data-tab-active="true">Advisory</li>
-						<li data-tab="watch" >Watch</li>
-						<li data-tab="info" >Info</li>
-						
-					</ul>
+		
 		
 				
 				</div>		
@@ -123,9 +119,9 @@
                 	<h1 class='nd-title'><i class='zmdi zmdi-share'></i>&nbsp;SHARE</h1>
             	</div>
                 <div data-role="content">
-                    <a href="http://www.facebook.com/sharer/sharer.php?u=http://www.pagasa.dost.gov.ph/index.php/general-weather/daily-weather-forecast&title=Weather"  data-role="button" data-inline="true" class="ui-btn " target="_blank"><i class='zmdi zmdi-facebook-box zmdi-hc-lg'></i> SHARE</a>
-					<a href="http://twitter.com/share?url=http://www.pagasa.dost.gov.ph/index.php/general-weather/daily-weather-forecast&title=Weather&text=Daily+Weather+%23PAGASA" title="Share on Twitter"  data-role="button" data-inline="true" class="ui-btn  " target="_blank"><i class='zmdi zmdi-twitter-box zmdi-hc-lg'></i> TWEET</a>
-					<a href="https://plus.google.com/share?url=http://www.pagasa.dost.gov.ph/index.php/general-weather/daily-weather-forecast&title=Weather&text=Daily+Weather+%23PAGASA" title="Share on Twitter"  data-role="button" data-inline="true" class="ui-btn  " target="_blank"><i class='zmdi zmdi-google-plus-box zmdi-hc-lg'></i> SHARE</a>
+                    <a href="http://www.facebook.com/sharer/sharer.php?u=http://pagasa.dost.gov.ph/#rainfall-and-thunderstorm-warning"  data-role="button" data-inline="true" class="ui-btn " target="_blank"><i class='zmdi zmdi-facebook-box zmdi-hc-lg'></i> SHARE</a>
+					<a href="http://twitter.com/share?url=http://pagasa.dost.gov.ph/#rainfall-and-thunderstorm-warning" title="Share on Twitter"  data-role="button" data-inline="true" class="ui-btn  " target="_blank"><i class='zmdi zmdi-twitter-box zmdi-hc-lg'></i> TWEET</a>
+					<a href="https://plus.google.com/share?url=http://pagasa.dost.gov.ph/#rainfall-and-thunderstorm-warning" title="Share on Twitter"  data-role="button" data-inline="true" class="ui-btn  " target="_blank"><i class='zmdi zmdi-google-plus-box zmdi-hc-lg'></i> SHARE</a>
                     <a href="dialog/index.html" data-rel="back" data-role="button" data-inline="true" class="ui-btn ui-btn-primary"><i class='zmdi zmdi-cancel'></i> Cancel</a>
 
                 </div>
@@ -133,36 +129,30 @@
 		 
 		 
 			<div role="main" class="ui-content wow fadeIn" data-inset="false" data-wow-delay="0.2s">
-			<div data-role="nd2tab" data-tab="friends" data-swipe="true">		
-				<select id=div onchange="getData()">
-					<option value="" style="display:none;" >select region</option> 
-					<option value="NL" >Northern Luzon</option> 			
-					<option value="NCR" >NCR</option> 	
-					<option value="SL" >Southern Luzon</option> 
-					<option value="VIS" >Visayas</option> 
-					<option value="MIN" >Mindanao</option> 
-				</select>
-				
-				<div class="inner" id="inner" ></div>
-				<pre id="log"></pre>
-				<pre class="classList"></pre>
-				
+			<div class="nd2-card nd3-card">
+						<div class="card-media">
+							<div data-role="nd2tab" data-tab="friends" data-swipe="true">		
+								<select id=div onchange="getData()">
+									<option value="" style="display:none;" >select region</option> 
+									<option value="NL" >Northern Luzon</option> 			
+									<option value="NCR" >NCR</option> 	
+									<option value="SL" >Southern Luzon</option> 
+									<option value="VIS" >Visayas</option> 
+									<option value="MIN" >Mindanao</option> 
+								</select>
+													
+									<div class="inner" id="inner" >	
+									
+					<img src="img/ts_details.PNG" width="100%">
 			</div>
+									
+									<pre id="log"></pre>
+									<pre class="classList"></pre>
+								</div>
+							</div>
+						</div>
+								
 			
-			<div data-role="nd2tab" data-tab="watch" data-swipe="true">
-				<select id=div2 onchange="getData2()">
-				<option value="" style="display:none;" >select region</option> 
-				<option value="MIN" >Mindanao</option> 
-				<option value="SL" >South Luzon</option> 
-				<option value="NL" >North Luzon</option> 
-				<option value="VIS" >Visayas</option> 
-				</select>
-				<div class="inner2" id="inner2" ></div>
-			</div>
-			<div data-role="nd2tab" data-tab="info" data-swipe="true">
-	
-	
-			</div>					
 		</div>
 	</div>
 	
@@ -181,7 +171,7 @@
 		<script src="js/moment.min.js"></script>
 		<script src="js/internet.js"></script>
 		<script src="js/warnings_thunderstorms.js"></script>
-		<script src="js/watch_thunderstorms.js"></script>
+	<!--	<script src="js/watch_thunderstorms.js"></script>-->
 
 
 	</body>
