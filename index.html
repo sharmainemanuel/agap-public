@@ -12,16 +12,7 @@
     <script>
 	
 	
-	
-	
-			$.ajax({
-	type: "GET",
-	url: "http://m.weather.gov.ph/agaptest/main_local.php",
-	async: false,
-	success: function(myData){
-	console.log(myData);
-	
-  setTimeout(function() {
+	  setTimeout(function() {
     if(localStorage.getItem("dataemail") == null || localStorage.getItem("dataemail") == "")
     {
     setTimeout(function(){
@@ -48,7 +39,16 @@
       //location.href="main2.html";	 
     }
 	
-	});
+	
+	/*		$.ajax({
+	type: "GET",
+	url: "http://m.weather.gov.ph/agaptest/main_local.php",
+	async: false,
+	success: function(myData){
+	console.log(myData);
+	
+
+	});*/
 	
 	
   </script>
