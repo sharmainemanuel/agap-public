@@ -56,7 +56,7 @@ script-src * 'self' 'unsafe-inline' 'unsafe-eval';">
 				<div data-role="collapsible" data-inset="false"  data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
 					<h3>General Weather</h3>
 					<ul data-role="listview" data-inset="false" data-icon="false">
-						<li><a href="main2.html" data-ajax='false' data-icon="false">Daily</a></li>
+						<li><a href="camera3.html#homepage" data-ajax='false' data-icon="false">Daily</a></li>
 						<li><a href="keycities.html#keycities" data-ajax='false' data-icon="false">Key Cities</a></li>
 						<li><a href="tourist.html#tourist" data-ajax='false' data-icon="false">Tourist</a></li>
 						<li><a href="local.html#local"  data-ajax='false'>Local Cities</a></li>
@@ -180,7 +180,12 @@ script-src * 'self' 'unsafe-inline' 'unsafe-eval';">
 
                 </div>
             </div>
+			
+			
 
+		
+		<!--  -->
+			
 		</div>
 		</div>
 	
@@ -459,12 +464,7 @@ function getData(){
 	var  forecast = myData.result[4].forecast;
 		$("#rss-feeds").html("Issued Date: "+issued_time+", "+issued_date+"</br>"+forecast);
 			//setTimeout(function(){$('#imgLoader2').fadeOut();},500);}
-	} , error: function (request, textStatus, errorThrown) {
-	$("#rss-feeds").html("Data not avaible please try again later");
-        console.log(request.responseText);
-        console.log(textStatus);
-        console.log(errorThrown);
-    }
+	}
 	
 	});
 	</script>
