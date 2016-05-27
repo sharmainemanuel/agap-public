@@ -9,6 +9,7 @@ var arrIcon2=[], arrMin2=[], arrMax2=[];
 var arrIcon3=[], arrMin3=[], arrMax3=[];
 var arrIcon4=[], arrMin4=[], arrMax4=[];
 var arrIcon5=[], arrMin5=[], arrMax5=[];
+var currentLat, currentLon;
 
 $(document).ready(function()
 {
@@ -60,11 +61,11 @@ $(document).ready(function()
           arrMax5.push(myData.result.data[i].day5.max);
           
         }}
-      });
+      }); 
       navigator.geolocation.getCurrentPosition(function(position){
-      vLat=position.coords.latitude; 
-      vLong=position.coords.longitude;
-      console.log(vLat + ", " + vLong);
+      vLat=position.coords.latitude; currentLat = vLat;
+      vLong=position.coords.longitude; currentLon = vLong;
+      console.log(currentLat + ", " + currentLon);
        google.maps.event.addDomListener(window, 'load',initialize(vLat, vLong, 10));
     });
       //google.maps.event.addDomListener(window, 'load',initialize(vLat, vLong, 6));
@@ -112,6 +113,7 @@ function initialize(vLat, vLong, vZoom)
   var infowindow = new google.maps.InfoWindow();
   var marker, i;
 
+  marker = new google.maps.Marker({position: new google.maps.LatLng(currentLat, currentLon), map:map});
   for(i=0; i<arrLocations.length; i++)
   {
     marker = new google.maps.Marker({
