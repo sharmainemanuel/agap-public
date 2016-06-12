@@ -26,10 +26,11 @@ function registerPushwooshAndroid() {
 		function(event)
 		
 		{
-			alert(event);
+			alert("dgdfg"+ event);
 			
             var title = event.notification.title;
             var userData = event.notification.userdata;
+			
 console.log(userData);
             //dump custom data to the console if it exists
             if(typeof(userData) != "undefined") {
@@ -37,7 +38,8 @@ console.log(userData);
 			}
 
 			//and show alert
-			alert(title);
+			alert("wht"+title);
+			navigator.notification.alert(title);
 
 			//stopping geopushes
 			//pushNotification.stopGeoPushes();
