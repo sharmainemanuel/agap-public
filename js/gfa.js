@@ -9,20 +9,16 @@
   success: function (result2){
 	setTimeout(function(){
 		$('#imgLoader').fadeOut();
-	if(result2.result == "" || result2.result == null){
-			$( ".inner" ).html("As of today there is no flood advisory");
-	}
-	else{
- 	var region = result2.result['26f22ef9-c7af-4474-b3a1-85dd44a74ba6'].info.parameter.value;
- 	var area = result2.result['26f22ef9-c7af-4474-b3a1-85dd44a74ba6'].info.area.areaDesc;
+ 	var info = result2.result['26f22ef9-c7af-4474-b3a1-85dd44a74ba6'].info.event;
+ 	var responseType = result2.result['26f22ef9-c7af-4474-b3a1-85dd44a74ba6'].info.responseType;
+ 	var urgency = result2.result['26f22ef9-c7af-4474-b3a1-85dd44a74ba6'].info.urgency;
+ 	var severity = result2.result['26f22ef9-c7af-4474-b3a1-85dd44a74ba6'].info.severity;
+ 	var certainty = result2.result['26f22ef9-c7af-4474-b3a1-85dd44a74ba6'].info.certainty;
+ 	var expires = result2.result['26f22ef9-c7af-4474-b3a1-85dd44a74ba6'].info.expires;
  	var headline = result2.result['26f22ef9-c7af-4474-b3a1-85dd44a74ba6'].info.headline;
  	var description = result2.result['26f22ef9-c7af-4474-b3a1-85dd44a74ba6'].info.description;
-
 	
-			$( ".inner" ).html("<p><span>Region: </span><br>" +region+"</p><p><span>Area: </span><br>" +area+"</p><p><span>Headline: </span><br>" +headline+"</p><p><span>Description: </span><br>" +description+"</p>");
-		
-	}
-
+	$( ".inner" ).html("<p><span>Event</span>: <br>"+info+"</p><p><span>Response Type: </span><br>"+responseType+"</p><p><span>Urgency:</span> <br>"+severity+"</p><p><span>Certainty: </span><br>" +certainty+"</p><p><span>Expiries: </span><br>" +expires+"</p><p><span>Headline: </span><br>" +headline+"</p><p><span>Description: </span><br>" +description+"</p>");
 	 }, 1000);
 	},  error: function (request, textStatus, errorThrown) {
         //console.log(request.responseText);

@@ -1296,10 +1296,6 @@ html >body .ui-rangeslider .ui-rangeslider-sliders .ui-slider-track:first-child 
  * Cards
  */
 
-.nd3-card {
-	max-width: 580px !important;
-	padding:15px;
-}
 .nd2-card {
 	display: block;
 	border-radius: 4px;
@@ -1398,9 +1394,7 @@ html >body .ui-rangeslider .ui-rangeslider-sliders .ui-slider-track:first-child 
 
 
 .nd2-card .card-title {
-	padding: 20px 16px;
-		white-space: pre-line;
-		overflow:hidden;
+	padding: 28px 16px;
 }
 
 .nd2-card.card-media-right.card-media-small .card-title { min-height: 56px; }
@@ -1418,7 +1412,7 @@ html >body .ui-rangeslider .ui-rangeslider-sliders .ui-slider-track:first-child 
 	line-height: 26px;
 	max-width: 90%;
 	overflow: hidden;
-	white-space: pre-line;
+	white-space: nowrap;
 	text-overflow: ellipsis;
 }
 

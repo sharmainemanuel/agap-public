@@ -26,9 +26,8 @@ $(document).ready(function()
     } else {
       // Philippines 12.330240, 122.231560
     vLat = 12.330240; vLong = 122.231560;
-    google.maps.event.addDomListener(window, 'load',initialize(vLat, vLong, 6));
+    google.maps.event.addDomListener(window, 'load',initialize(vLat, vLong, 5));
     }
-    subic();
 });
 
 function initialize(vLat, vLong, vZoom){
