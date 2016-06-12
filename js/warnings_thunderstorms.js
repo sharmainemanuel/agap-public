@@ -1,28 +1,81 @@
+var MyAdvisoryII;
+var Advisory=[], Advisory2=[],Advisory3=[],aw;
 function getData(){	
 		var divisionResult = document.getElementById('div').value;
 		$.ajax
 ({
   type: "GET",
-  url: "http://m.weather.gov.ph/agaptest/ts_advisory.php",
+  url: "http://m.weather.gov.ph/agaptest/ts_watch2.php",
   async: false,
   success: function (result2){
-			var time = result2.result[1][0].Issued_Time;
-			var day = result2.result[1][0].Day;
-			var month = result2.result[1][0].Month;
-			var year = result2.result[1][0].Year;
-			var issued_at = time + " " +day+" " +month+ " " +year;
-			for(j=0; j<=result2.result.length; j++){
-			var division = result2.result[j][0].Division;
-			var Advisory = result2.result[j][0].Advisory;
-			var Advisory_2 = result2.result[j][0].Advisory_2;
-			var Advisory_3 = result2.result[j][0].Advisory_3;
-			var Advisory_Number = result2.result[j][0].Advisory_Number;
-					if(division == divisionResult){
-						document.getElementById('inner').innerHTML = "<p style=font-weight:bold>Thunderstorm Advisory</p><br><center><img src=img/newthunderstom.png width=30% height=30% ></center><br><span>Issued at : </span><br>"+issued_at+ "<br><br>"+"<span>Advisory Number :</span><br>"+Advisory_Number+"<br><br><span>Advisory I: </span><br>"+Advisory+"<br><br><span>Advisory II: </span><br>"+Advisory_2+"<br><br><span>Advisory III: </span><br>"+Advisory_3+"</span>";
-							
+		var div = Object.keys(result2.result);
+		for(j=0; j<=div.length; j++){
+			if(div[j] == divisionResult){
+				var testing = JSON.stringify(result2);
+				var res = testing.replace("watch/info", "watch");
+				var test = JSON.parse(res);	
+				var watch = test.result[divisionResult]['watch/info'];
+				
+				var Advisory = result2.result[divisionResult].Advisory;
+				var Advisory2 = result2.result[divisionResult].Advisory_2;
+				var Advisory3	 = result2.result[divisionResult].Advisory_3;
+		
+				var watchImg;
+				if (watch != undefined){
+					
+					if(watch == "Thunderstorm Watch"){
+						watch = "Thunderstorm Watch";
+						 watchImg = "<img src='img/newwatch.png' style='width:30% !important;'>";
+					}
+					else{
+						watch = "Thunderstorm Information"
+						
+						 watchImg = "<img src='img/newinfo.png' style='width:30% !important;'>";
+					}
+					
+				}
+				else
+				{
+					watch = "Thunderstorm Advisory";
+					 watchImg = "<img src='img/newthunderstom.png' style='width:30% !important;'>";	
+					
+				}
+				if( Advisory2  !=  undefined ){
+			
+					MyAdvisoryII = "<br><strong></strong>"+Advisory2+"<br>";
+				}
+				else{
+					MyAdvisoryII =  "";	
 				}	
+				if( Advisory3  !=  undefined ){
+		
+					MyAdvisoryIII = "<br><strong></strong>"+Advisory3+"<br>";
+				}
+				else{
+					MyAdvisoryIII =  "";	
+				}
+				var mytime = result2.result[divisionResult].Issued_Time;
+				var myday = result2.result[divisionResult].Day;
+				var mymonth = result2.result[divisionResult].Month;
+				var myyear = result2.result[divisionResult].Year;
+				var issued_at = mytime + " " +myday+" " +mymonth+ " " +myyear;
+				
+				document.getElementById('inner').innerHTML = "<p><strong><center>"+watch+"</center></strong></p><br><center>"+watchImg+"</center><br><strong>Issued at :</strong>"+issued_at+ "<br><br>"+"<strong></strong>"+Advisory +"	<br>"+MyAdvisoryII+MyAdvisoryIII;
+		
 			}
 		}
+
+
+							
+				}	
+					,  error: function (request, textStatus, errorThrown) {
+
+		errMsg();	
+        console.log(textStatus);
+        console.log(errorThrown);
+    }
+			
+		
 
 	
 });
