@@ -11,7 +11,7 @@ body {
 /*
 user/*/
 .user-menu {
-    display: block;
+    display: none;
 }
 .ui-page {
     background: transparent;
