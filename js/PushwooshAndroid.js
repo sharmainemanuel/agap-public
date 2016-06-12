@@ -25,13 +25,19 @@ function registerPushwooshAndroid() {
 	document.addEventListener('push-notification',
 		function(event)
 		{
-                    //console.warn('push-notification!: ' + event.notification);
-                                               //navigator.notification.alert(JSON.stringify(['push-notification1!', event.notification]));
-                                              var notification = JSON.parse(event.notification);
-                                              navigator.notification.alert(notification.aps.alert);
-                                              //pushNotification.setApplicationIconBadgeNumber(0);
-                                               pushNotification.setApplicationIconBadgeNumber(0);
-                                             
+            var title = event.notification.title;
+            var userData = event.notification.userdata;
+
+            //dump custom data to the console if it exists
+            if(typeof(userData) != "undefined") {
+				console.warn('user data: ' + JSON.stringify(userData));
+			}
+
+			//and show alert
+			alert(title);
+
+			//stopping geopushes
+			//pushNotification.stopGeoPushes();
 		}
 	);
 

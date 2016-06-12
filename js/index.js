@@ -21,20 +21,19 @@ function initPushwoosh() {
 	var pushNotification = cordova.require("pushwoosh-cordova-plugin.PushNotification");
 	if(device.platform == "Android")
 	{
-		alert("hi");
+	//	alert("hi");
 		//registerPushwooshAndroid();
 		    var pushNotification = cordova.require("pushwoosh-cordova-plugin.PushNotification");
  
     //set push notifications handler
     document.addEventListener('push-notification', function(event) {
-        var title = event.notification.title;
-        var userData = event.notification.userdata;
-                                 
-        if(typeof(userData) != "undefined") {
-            console.warn('user data: ' + JSON.stringify(userData));
-        }
-                                     
-        alert(title);
+                //console.warn('push-notification!: ' + event.notification);
+                                               //navigator.notification.alert(JSON.stringify(['push-notification1!', event.notification]));
+                                              var notification = JSON.parse(event.notification);
+                                              navigator.notification.alert(notification.aps.alert);
+                                              //pushNotification.setApplicationIconBadgeNumber(0);
+                                               pushNotification.setApplicationIconBadgeNumber(0);
+                                             
     });
  
     //initialize Pushwoosh with projectid: "GOOGLE_PROJECT_NUMBER", pw_appid : "PUSHWOOSH_APP_ID". This will trigger all pending push notifications on start.
