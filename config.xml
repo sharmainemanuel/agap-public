@@ -78,7 +78,7 @@
     <gap:plugin name="pushwoosh-pgb-plugin" source="npm" />
 	
 	<plugin name="phonegap-plugin-push" source="npm">
-		<param name="SENDER_ID" value="183997037267" />
+	<param name="SENDER_ID" value="183997037267" />
 	</plugin>
 
     <!-- Define app icon for each platform. -->
@@ -127,6 +127,7 @@
 
     <access origin="*"/>
 	<access origin="*.pushwoosh.com"/>
+	
     <!-- Added the following intents to support the removal of whitelist code from base cordova to a plugin -->
     <!-- Whitelist configuration. Refer to https://cordova.apache.org/docs/en/edge/guide_appdev_whitelist_index.md.html -->
 	

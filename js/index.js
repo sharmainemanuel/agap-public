@@ -21,7 +21,36 @@ function initPushwoosh() {
 	var pushNotification = cordova.require("pushwoosh-cordova-plugin.PushNotification");
 	if(device.platform == "Android")
 	{
-		registerPushwooshAndroid();
+		alert("hi");
+		//registerPushwooshAndroid();
+		    var pushNotification = cordova.require("pushwoosh-cordova-plugin.PushNotification");
+ 
+    //set push notifications handler
+    document.addEventListener('push-notification', function(event) {
+        var title = event.notification.title;
+        var userData = event.notification.userdata;
+                                 
+        if(typeof(userData) != "undefined") {
+            console.warn('user data: ' + JSON.stringify(userData));
+        }
+                                     
+        alert(title);
+    });
+ 
+    //initialize Pushwoosh with projectid: "GOOGLE_PROJECT_NUMBER", pw_appid : "PUSHWOOSH_APP_ID". This will trigger all pending push notifications on start.
+	pushNotification.onDeviceReady({ projectid: "183997037267 ", pw_appid : "38458-7561C" });
+ 
+    //register for pushes
+    pushNotification.registerDevice(
+        function(status) {
+            var pushToken = status;
+            console.warn('push token: ' + pushToken);
+        },
+        function(status) {
+            console.warn(JSON.stringify(['failed to register ', status]));
+        }
+    );
+		
 	}
 
 	if(device.platform == "iPhone" || device.platform == "iOS")
