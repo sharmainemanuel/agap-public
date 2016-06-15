@@ -4,7 +4,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "dost.pagasa.gov.ph.gc.ccs"
-        version   = "2.61">
+        version   = "2.62">
 
     <name>PAGASA</name>
 
@@ -74,12 +74,13 @@
     <!--
         <gap:plugin name="com.phonegap.plugins.barcodescanner" />
     -->
-	<!-- Pushwoosh plugin -->
+	<!-- Pushwoosh plugin 
     <gap:plugin name="pushwoosh-pgb-plugin" source="npm" />
-	
-	<plugin name="phonegap-plugin-push" source="npm">
+	-->
+	<plugin name="pushwoosh-pgb-plugin" specs="5.0.3"/>
+	<!--<plugin name="phonegap-plugin-push" source="npm">
 		<param name="SENDER_ID" value="183997037267" />
-	</plugin>
+	</plugin>-->
 
     <!-- Define app icon for each platform. -->
 	
