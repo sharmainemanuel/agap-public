@@ -120,7 +120,8 @@ mytime=setTimeout('AjaxFunction();',refresh)
 				<div data-role="collapsible" data-inset="false"  data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
 					<h3>General Weather</h3>
 					<ul data-role="listview" data-inset="false" data-icon="false">
-						<li><a href="main2.html#homepage" data-ajax='false' data-icon="false">Daily</a></li>
+						<li><a href="main2.html#homepage" data-ajax='false' data-icon="false">Current Weather</a></li>
+						<li><a href="forecast.html" data-ajax='false' data-icon="false">Daily Forecast</a></li>
 						<li><a href="keycities.html#keycities" data-ajax='false' data-icon="false">Key Cities</a></li>
 						<li><a href="tourist.html#tourist" data-ajax='false' data-icon="false">Tourist</a></li>
 						<li><a href="local.html#local"  data-ajax='false'>Local Cities</a></li>
@@ -214,8 +215,7 @@ mytime=setTimeout('AjaxFunction();',refresh)
 
 			<div role="main" class="ui-content wow fadeIn" data-inset="false" data-wow-delay="0.2s">
 	
-			<div data-role="nd2tab" data-tab="friends" data-swipe="true">	
-			
+	
 					
 			<div id="demo"> </div>	
 		<img id="imgLoader" src="img/ballRing.gif" style="width:10%;opacity:0.5;margin-left:auto;margin-right:auto;display:block; position: relative;">
@@ -232,25 +232,8 @@ mytime=setTimeout('AjaxFunction();',refresh)
 			<pre id="log"></pre>
 			<pre class="classList"></pre>
 			
-			</div>
-			
-			<div data-role="nd2tab" data-tab="work" data-swipe="true">
-					<div class="nd2-card card-media-right card-media-small">
-				<div >
-				
-					<div class="card-title has-avatar has-supporting-text">
-					
-						<img class="card-avatar" src="img/alert-circle.png">
-					
-						<h3 class="card-primary-title">Daily Forecast</h3>
-					
-						<h5 class="card-supporting-text"><div id="rss-feeds" style='text-align: justify;'></div></h5>
-					</div>
-				
-				</div>
-			</div>
-			
-			</div>
+		
+
 			
 			<div data-role="popup" id="sharePopupDialog">
 
